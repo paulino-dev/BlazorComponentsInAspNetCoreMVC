@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <component type="typeof(BlazorWASM.Components.Count)" render-mode="WebAssemblyPrerendered" />
+    <component type="typeof(BlazorWASM.Components.Count)" render-mode="ServerPrerendered" />
+    <your-component></your-component>
+    <br />
+    <br />
+    <button class="btn btn-primary" onclick ="test()">Add VIA JS</button>
+    <div id="blazor-root">Para carregar o componente click no botão acima</div>
+</div>
+<script>
+    function test() {
+        window.Blazor.rootComponents.add(document.getElementById('blazor-root'), 'counter', {})
+        .catch(reason => { alert(reason.message)})
+    }
+</script>
